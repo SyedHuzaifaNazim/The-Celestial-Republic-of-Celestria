@@ -12,19 +12,27 @@ export default function SignupModal({ onClose }) {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      // Create user with email=cnic@celestria.gov
-      const userCredential = await createUserWithEmailAndPassword(auth, `${cnic}@celestria.gov`, password);
+      // Create user in Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        `${cnic}@celestria.gov`,
+        password
+      );
       const user = userCredential.user;
-      // Save additional details in Firestore under "users" collection
+
+      // Save details in Firestore
       await setDoc(doc(db, 'users', user.uid), {
-        name: name,
-        phone: phone,
-        cnic: cnic,
+        name,
+        phone,
+        cnic,
       });
-      console.log('User signed up:', user);
-      onClose();
+
+      console.log('User signed up successfully:', user.uid);
+
+      if (onClose) onClose(); // ✅ only call if defined
       alert('Sign up successful! Please log in.');
     } catch (error) {
+      console.error('Signup error:', error);
       alert(error.message);
     }
   };
@@ -78,9 +86,19 @@ export default function SignupModal({ onClose }) {
               required
             />
           </label>
-          <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded-md">Sign Up</button>
+          <button
+            type="submit"
+            className="bg-green-600 text-white px-4 py-2 rounded-md"
+          >
+            Sign Up
+          </button>
         </form>
-        <button onClick={onClose} className="mt-4 text-blue-500 hover:underline">Close</button>
+        <button
+          onClick={onClose}
+          className="mt-4 text-blue-500 hover:underline"
+        >
+          Close
+        </button>
       </div>
     </div>
   );
