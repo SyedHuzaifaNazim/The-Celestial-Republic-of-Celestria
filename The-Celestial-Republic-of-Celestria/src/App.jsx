@@ -14,7 +14,8 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      {/* <Home /> */}
+      <Home />
+      <AuthPage />
       <Footer />
     </div>
   );
