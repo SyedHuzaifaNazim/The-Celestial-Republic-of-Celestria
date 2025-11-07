@@ -16,6 +16,11 @@ function App() {
       <Navbar />
       <Home />
       <AuthPage />
+      <About />
+      <ProfileSetup />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Dashboard />
+      </Suspense>
       <Footer />
     </div>
   );
