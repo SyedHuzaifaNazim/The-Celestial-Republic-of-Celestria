@@ -3,7 +3,7 @@ import { SparklesIcon, GlobeAltIcon, ShieldCheckIcon } from '@heroicons/react/24
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#0c3962] via-[#0c3962]/90 to-[#85898c] text-white">
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-white/5 blur-3xl animate-pulse" />
@@ -14,13 +14,13 @@ export default function Home() {
         {/* Hero Section */}
         <div className="text-center animate-fade-in">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur animate-slide-in-top">
-            <SparklesIcon className="h-5 w-5 text-yellow-300" />
+            <SparklesIcon className="h-5 w-5 text-[#85898c]" />
             <span className="text-sm font-medium">Official Government Portal</span>
           </div>
 
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl animate-slide-in-left">
             Celestial Republic
-            <span className="block bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent animate-slide-in-right">
+            <span className="block bg-gradient-to-r from-[#85898c] to-[#0c3962] bg-clip-text text-transparent animate-slide-in-right">
               of Celestria
             </span>
           </h1>
@@ -31,7 +31,7 @@ export default function Home() {
 
           {/* CTA Buttons */}
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row animate-fade-in-late">
-            <button className="group relative inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 px-8 py-3 font-semibold text-gray-900 transition-all hover:scale-105 hover:shadow-2xl animate-bounce-subtle">
+            <button className="group relative inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[#85898c] to-[#0c3962] px-8 py-3 font-semibold text-white transition-all hover:scale-105 hover:shadow-2xl animate-bounce-subtle">
               <span className="absolute inset-0 rounded-xl bg-white/20 opacity-0 transition-opacity group-hover:opacity-100" />
               <span className="relative">Sign In to Dashboard</span>
             </button>
@@ -54,8 +54,8 @@ export default function Home() {
               className="group rounded-2xl bg-white/5 p-6 backdrop-blur transition-all hover:bg-white/10 hover:scale-105 animate-fade-in-up"
               style={{ animationDelay: `${idx * 150}ms` }}
             >
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 transition-transform group-hover:rotate-12">
-                <item.icon className="h-6 w-6 text-gray-900" />
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#85898c] to-[#0c3962] transition-transform group-hover:rotate-12">
+                <item.icon className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-white">{item.title}</h3>
               <p className="mt-2 text-sm text-white/70">{item.desc}</p>

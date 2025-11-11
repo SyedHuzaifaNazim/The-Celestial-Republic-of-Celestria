@@ -12,7 +12,7 @@ const Dashboard = React.lazy(() => import('./pages/Dashboard.jsx'));
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-[#0c3962] via-[#85898c] to-[#0c3962] text-white flex flex-col">
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-8">
         <Routes>
@@ -26,7 +26,7 @@ function App() {
               <Suspense
                 fallback={
                   <div className="flex items-center justify-center h-full">
-                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-400"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#85898c]"></div>
                   </div>
                 }
               >
