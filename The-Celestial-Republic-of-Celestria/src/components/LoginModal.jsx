@@ -36,7 +36,7 @@ export default function LoginModal({ onClose }) {
         {/* Close icon */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+          className="absolute top-4 right-4 rounded-full p-2 text-[#85898c] hover:bg-[#0c3962]/10 hover:text-[#0c3962]"
           aria-label="Close modal"
         >
           <svg
@@ -55,7 +55,7 @@ export default function LoginModal({ onClose }) {
           </svg>
         </button>
 
-        <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+        <h2 className="mb-6 text-center text-2xl font-bold text-[#0c3962]">
           Welcome Back
         </h2>
 
@@ -64,7 +64,7 @@ export default function LoginModal({ onClose }) {
           <div>
             <label
               htmlFor="cnic"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-[#85898c]"
             >
               CNIC
             </label>
@@ -73,9 +73,9 @@ export default function LoginModal({ onClose }) {
               type="text"
               value={cnic}
               onChange={(e) => setCnic(e.target.value)}
-              placeholder="xxxxx-xxxxxxx-x"
+              placeholder="xxxxxxxxxxxxx"
               required
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-1 w-full rounded-lg border border-[#85898c] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0c3962]"
             />
           </div>
 
@@ -83,7 +83,7 @@ export default function LoginModal({ onClose }) {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-[#85898c]"
             >
               Password
             </label>
@@ -94,7 +94,7 @@ export default function LoginModal({ onClose }) {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-1 w-full rounded-lg border border-[#85898c] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0c3962]"
             />
           </div>
 
@@ -107,20 +107,20 @@ export default function LoginModal({ onClose }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 py-2.5 text-white font-semibold shadow hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-60"
+            className="w-full rounded-lg bg-gradient-to-r from-[#0c3962] to-[#0c3962]/80 py-2.5 text-white font-semibold shadow hover:from-[#0a2a4a] hover:to-[#0a2a4a]/80 focus:outline-none focus:ring-2 focus:ring-[#0c3962] disabled:opacity-60"
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
         {/* Footer */}
-        <p className="mt-6 text-center text-xs text-gray-500">
+        <p className="mt-6 text-center text-xs text-[#85898c]">
           By logging in, you agree to our{' '}
-          <a href="#" className="underline hover:text-gray-700">
+          <a href="#" className="underline hover:text-[#0c3962]">
             Terms
           </a>{' '}
           and{' '}
-          <a href="#" className="underline hover:text-gray-700">
+          <a href="#" className="underline hover:text-[#0c3962]">
             Privacy Policy
           </a>
           .
