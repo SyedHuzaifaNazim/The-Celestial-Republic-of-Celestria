@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from "../assets/logo.jpg";
 
 export default function Footer() {
   return (
@@ -7,6 +8,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
           {/* Brand column */}
           <div>
+            {/* Logo */}
+            <img
+              src={logo}
+              alt="Celestria Logo"
+              className="h-12 mx-auto md:mx-0 mb-4"
+            />
             <h3 className="text-2xl font-bold mb-4 tracking-wide">Celestria</h3>
             <p className="text-indigo-200 text-sm">
               The Celestial Republic guiding humanity toward a harmonious future among the stars.

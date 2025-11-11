@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.jpg";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -24,10 +25,16 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={() => handleNav("/")}
-            className="text-2xl font-extrabold tracking-tight hover:text-blue-200 transition-colors duration-300"
+            className="flex items-center gap-3 text-2xl font-extrabold tracking-tight hover:text-blue-200 transition-colors duration-300"
             aria-label="Celestria Government Portal Home"
           >
-            Celestria Government Portal
+            {/* Placeholder logo – swap src for your actual asset */}
+            <img
+              src={logo}
+              alt="Celestria Crest"
+              className="h-10 w-auto object-contain"
+            />
+            <span>Celestria Government Portal</span>
           </button>
 
           {/* Desktop Menu */}
