@@ -12,7 +12,7 @@ export default function Footer() {
             <img
               src={logo}
               alt="Celestria Logo"
-              className="h-12 mx-auto md:mx-0 mb-4"
+              className="h-12 w-12 rounded-full mx-auto md:mx-0 mb-4 object-cover"
             />
             <h3 className="text-2xl font-bold mb-4 tracking-wide">Celestria</h3>
             <p className="text-[#85898c] text-sm">

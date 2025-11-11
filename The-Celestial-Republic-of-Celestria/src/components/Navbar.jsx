@@ -32,7 +32,7 @@ export default function Navbar() {
             <img
               src={logo}
               alt="Celestria Crest"
-              className="h-10 w-auto object-contain"
+              className="h-10 w-10 object-cover rounded-full"
             />
             <span>Celestria Government Portal</span>
           </button>
