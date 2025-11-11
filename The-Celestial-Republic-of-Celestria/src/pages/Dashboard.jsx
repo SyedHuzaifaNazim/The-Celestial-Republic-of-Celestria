@@ -8,10 +8,13 @@ import { signOut } from 'firebase/auth';
 export default function Dashboard() {
   const [docFile, setDocFile] = useState(null);
   const [message, setMessage] = useState('');
+  const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
 
   const handleUpload = async () => {
     if (docFile && auth.currentUser) {
+      setUploading(true);
+      setMessage('');
       try {
         const fileRef = ref(storage, `documents/${auth.currentUser.uid}/${docFile.name}`);
         await uploadBytes(fileRef, docFile);
@@ -22,40 +25,126 @@ export default function Dashboard() {
           uploadedAt: new Date().toISOString(),
         });
         setMessage('✅ Document uploaded successfully.');
+        setDocFile(null);
       } catch (error) {
-        alert(error.message);
+        setMessage('❌ Upload failed: ' + error.message);
+      } finally {
+        setUploading(false);
       }
     } else {
-      alert('Please log in and select a file first.');
+      setMessage('⚠️ Please log in and select a file first.');
     }
   };
 
   const handleSignOut = async () => {
     await signOut(auth);
-    navigate('/'); // Changed to a valid route
+    navigate('/');
   };
 
   if (!auth.currentUser) {
-    return <div className="p-8 text-red-600">Please log in first.</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-white flex items-center justify-center">
+        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Access Denied</h2>
+          <p className="text-gray-600">Please log in to continue.</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-      <p>Here you can upload and save your documents.</p>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-white">
+      <div className="max-w-5xl mx-auto px-6 py-10">
+        <header className="flex items-center justify-between mb-10">
+          <div>
+            <h1 className="text-3xl font-extrabold text-gray-900">Dashboard</h1>
+            <p className="text-gray-600 mt-1">Upload and manage your documents securely.</p>
+          </div>
+          <button
+            onClick={handleSignOut}
+            className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium text-white bg-red-500 hover:bg-red-600 transition"
+          >
+            Sign Out
+          </button>
+        </header>
 
-      <div className="mt-4">
-        <input type="file" onChange={(e) => setDocFile(e.target.files[0])} />
-        <button onClick={handleUpload} className="bg-green-500 text-white px-4 py-2 ml-2 rounded-md">
-          Upload Document
-        </button>
+        <section className="bg-white rounded-2xl shadow-lg p-8">
+          <div className="mb-6">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Select a document to upload
+            </label>
+            <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-indigo-300 rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+              <svg
+                className="w-10 h-10 text-indigo-400 mb-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M7 16a4 4 0 01-4-4V7a4 4 0 014-4h10a4 4 0 014 4v5a4 4 0 01-4 4H7z"
+                />
+              </svg>
+              <span className="text-sm text-gray-600">
+                {docFile ? docFile.name : 'Click to choose a file'}
+              </span>
+              <input
+                type="file"
+                className="hidden"
+                onChange={(e) => setDocFile(e.target.files[0])}
+              />
+            </label>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handleUpload}
+              disabled={uploading || !docFile}
+              className={`inline-flex items-center px-5 py-2.5 rounded-lg text-white font-semibold transition ${
+                uploading || !docFile
+                  ? 'bg-gray-300 cursor-not-allowed'
+                  : 'bg-indigo-600 hover:bg-indigo-700'
+              }`}
+            >
+              {uploading && (
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  ></path>
+                </svg>
+              )}
+              {uploading ? 'Uploading…' : 'Upload Document'}
+            </button>
+
+            {message && (
+              <span
+                className={`text-sm font-medium ${
+                  message.includes('✅') ? 'text-green-600' : 'text-red-600'
+                }`}
+              >
+                {message}
+              </span>
+            )}
+          </div>
+        </section>
       </div>
-
-      {message && <p className="mt-2 text-green-700">{message}</p>}
-
-      <button onClick={handleSignOut} className="mt-4 text-red-500 hover:underline">
-        Sign Out
-      </button>
     </div>
   );
 }
